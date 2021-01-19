@@ -32,6 +32,7 @@ func HelpAndExit() {
 // Options is main value holder agentgo-server flags.
 type Options struct {
 	Path     string `json:"path"`
+	Append   string `json:"append"`
 	Bulleted bool   `json:"bulleted"`
 	ShowHelp bool   `json:"show_help"`
 }
@@ -43,8 +44,10 @@ func ConfigureOptions(fs *flag.FlagSet, args []string) (*Options, error) {
 	// Define flags
 	fs.BoolVar(&opts.ShowHelp, "h", false, "Show help message")
 	fs.BoolVar(&opts.ShowHelp, "help", false, "Show help message")
-	// fs.BoolVar(&opts.Bulleted, "b", true, "")
-	// fs.BoolVar(&opts.Bulleted, "bulleted", true, "")
+	fs.BoolVar(&opts.Bulleted, "b", true, "")
+	fs.BoolVar(&opts.Bulleted, "bulleted", true, "")
+	fs.BoolVar(&opts.Bulleted, "a", true, "Append to markdown after <!--toc--> or write to stdout")
+	fs.BoolVar(&opts.Bulleted, "append", true, "Append to markdown after <!--toc--> or write to stdout")
 	fs.StringVar(&opts.Path, "p", "", "Path for the markdown file")
 	fs.StringVar(&opts.Path, "path", "", "Path for the markdown file")
 
