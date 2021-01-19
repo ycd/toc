@@ -15,14 +15,13 @@ import (
 
 func main() {
 	var toc TOC
-	toc.Options.Bulleted = true
+	toc.options.Bulleted = true
+	toc.options.Path = "test-markdown/TEST.md"
 
-	path := "test-markdown/TEST.md"
-
-	resp, _ := readFile(path)
+	resp, _ := toc.readFile()
 	toc.parseHTML(resp)
 
-	fmt.Println(toc.String())
+	toc.writeToFile(string(resp))
 
 }
 
@@ -33,10 +32,13 @@ var headers = map[string]int{"h1": 0, "h2": 1, "h3": 2, "h4": 3, "h5": 4, "h6": 
 // https://github.github.com/gfm/#tabs
 var tab = "    "
 
+type TOCConfig struct {
+	Path     string
+	Bulleted bool
+}
+
 type TOC struct {
-	Options struct {
-		Bulleted bool
-	}
+	options TOCConfig
 	Content []string
 }
 
@@ -66,7 +68,7 @@ func (t *TOC) parseHTML(body []byte) {
 	var delimiter string
 
 	// Set delimiter
-	if t.Options.Bulleted == true {
+	if t.options.Bulleted == true {
 		delimiter = "1."
 	} else {
 		delimiter = "-"
@@ -97,8 +99,8 @@ func (t *TOC) add(content string) {
 	t.Content = append(t.Content, content)
 }
 
-func readFile(path string) ([]byte, error) {
-	file, err := ioutil.ReadFile(path)
+func (t *TOC) readFile() ([]byte, error) {
+	file, err := ioutil.ReadFile(t.options.Path)
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,4 +125,19 @@ func convertToHTML(file []byte) (string, error) {
 	}
 
 	return buf.String(), nil
+}
+
+// TODO(ycd): make file writing more
+// memory efficient and safe
+func (t *TOC) writeToFile(markdown string) {
+	search := "<!--toc-->"
+
+	idx := strings.Index(markdown, search) + len(search) + 1
+
+	newText := markdown[:idx] + "\n" + t.String() + markdown[idx:]
+
+	err := ioutil.WriteFile(t.options.Path, []byte(newText), 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
