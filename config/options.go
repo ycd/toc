@@ -32,7 +32,7 @@ func HelpAndExit() {
 // Options is main value holder agentgo-server flags.
 type Options struct {
 	Path     string `json:"path"`
-	Append   string `json:"append"`
+	Append   bool   `json:"append"`
 	Bulleted bool   `json:"bulleted"`
 	ShowHelp bool   `json:"show_help"`
 }
