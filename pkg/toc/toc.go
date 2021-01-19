@@ -31,13 +31,13 @@ func Run() {
 		config.UsageAndExit(err)
 	}
 
-	//
 	if opts.ShowHelp {
 		config.HelpAndExit()
 	}
 
 	toc.Options.Path = opts.Path
 	toc.Options.Bulleted = opts.Bulleted
+	toc.Options.Append = opts.Append
 
 	toc.logic()
 }
@@ -55,10 +55,14 @@ func (t *toc) logic() {
 		os.Exit(1)
 	}
 
-	err = t.writeToFile(string(resp))
-	if err != nil {
-		color.Red(err.Error())
-		os.Exit(1)
+	if t.Options.Append == true {
+		err = t.writeToFile(string(resp))
+		if err != nil {
+			color.Red(err.Error())
+			os.Exit(1)
+		}
+	} else {
+		fmt.Print(t.String())
 	}
 
 	color.HiGreen("✔ Table of contents generated successfully.")
@@ -91,9 +95,9 @@ func (t *toc) parseHTML(body []byte) error {
 
 	// Set delimiter
 	if t.Options.Bulleted == true {
-		delimiter = "1."
-	} else {
 		delimiter = "-"
+	} else {
+		delimiter = "1."
 	}
 
 	parsedMD, err := convertToHTML(body)
