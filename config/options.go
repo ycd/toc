@@ -12,8 +12,10 @@ import (
 var usageStr = `
 Usage: toc [options]
 Options:
-    -p, --path <path>        Path for the markdown file.
-    -h, --help               Show this message
+	-p, --path <path>        Path for the markdown file.
+	-a, --append             Append toc after <!--toc-->, or write to stdout. 
+	-b, --bulleted           Write as bulleted, or write as numbered list.
+	-h, --help               Show this message and exit.
 `
 
 // UsageAndExit prints usage and exists the program.
@@ -42,14 +44,14 @@ func ConfigureOptions(fs *flag.FlagSet, args []string) (*Options, error) {
 	opts := &Options{}
 
 	// Define flags
-	fs.BoolVar(&opts.ShowHelp, "h", false, "Show help message")
-	fs.BoolVar(&opts.ShowHelp, "help", false, "Show help message")
-	fs.BoolVar(&opts.Bulleted, "b", true, "")
-	fs.BoolVar(&opts.Bulleted, "bulleted", true, "")
-	fs.BoolVar(&opts.Bulleted, "a", true, "Append to markdown after <!--toc--> or write to stdout")
-	fs.BoolVar(&opts.Bulleted, "append", true, "Append to markdown after <!--toc--> or write to stdout")
 	fs.StringVar(&opts.Path, "p", "", "Path for the markdown file")
 	fs.StringVar(&opts.Path, "path", "", "Path for the markdown file")
+	fs.BoolVar(&opts.Append, "a", true, "Append to markdown after <!--toc--> or write to stdout")
+	fs.BoolVar(&opts.Append, "append", true, "Append to markdown after <!--toc--> or write to stdout")
+	fs.BoolVar(&opts.Bulleted, "b", true, "Write as bulleted, or write as numbered list")
+	fs.BoolVar(&opts.Bulleted, "bulleted", true, "Write as bulleted, or write as numbered list")
+	fs.BoolVar(&opts.ShowHelp, "h", false, "Show help message")
+	fs.BoolVar(&opts.ShowHelp, "help", false, "Show help message")
 
 	if err := fs.Parse(args); err != nil {
 		return nil, err
