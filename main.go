@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"strings"
 
 	"github.com/yuin/goldmark"
@@ -18,7 +19,7 @@ func main() {
 
 	path := "test-markdown/TEST.md"
 
-	resp, _ := readParse(path)
+	resp, _ := readFile(path)
 	toc.parseHTML(resp)
 
 	fmt.Println(toc.String())
@@ -60,7 +61,7 @@ func getHeaderValue(header string) int {
 	return headers[header]
 }
 
-func (t *TOC) parseHTML(body string) {
+func (t *TOC) parseHTML(body []byte) {
 	var f func(*html.Node)
 	var delimiter string
 
@@ -71,7 +72,12 @@ func (t *TOC) parseHTML(body string) {
 		delimiter = "-"
 	}
 
-	doc, _ := html.Parse(strings.NewReader(body))
+	parsedMD, err := convertToHTML(body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	doc, _ := html.Parse(strings.NewReader(parsedMD))
 
 	f = func(n *html.Node) {
 		if n.Type == html.ElementNode && isHeader(n.Data) {
@@ -91,9 +97,18 @@ func (t *TOC) add(content string) {
 	t.Content = append(t.Content, content)
 }
 
+func readFile(path string) ([]byte, error) {
+	file, err := ioutil.ReadFile(path)
+	if err != nil {
+		return []byte{}, err
+	}
+
+	return file, nil
+}
+
 // Parse the file from path
 // convert markdown file to html as string
-func readParse(path string) (string, error) {
+func convertToHTML(file []byte) (string, error) {
 	var buf bytes.Buffer
 
 	md := goldmark.New(
@@ -102,11 +117,6 @@ func readParse(path string) (string, error) {
 			parser.WithAutoHeadingID(),
 		),
 	)
-
-	file, err := ioutil.ReadFile(path)
-	if err != nil {
-		return "", err
-	}
 
 	if err := md.Convert(file, &buf); err != nil {
 		return "", err
