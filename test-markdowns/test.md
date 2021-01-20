@@ -1,5 +1,4 @@
-
-# Table of Content
+# Table of Contents
 
 <!--toc-->
 
