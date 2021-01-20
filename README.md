@@ -1,17 +1,121 @@
-1. [HEAD ONE](#head-one)
-    2. [HEAD ONE-TWO](#head-one-two)
-        4. [HEAD ONE-TWO-ONE](#head-one-two-one)
-    2. [HEAD ONE-TWO-TWO](#head-one-two-two)
-1. [HEAD TWO](#head-two)
-1. [HEAD THREE](#head-three)
-    2. [HEAD THREE-ONE](#head-three-one)
-    2. [HEAD THREE-TWO](#head-three-two)
-    2. [HEAD THREE-THREE](#head-three-three)
-        3. [HEAD THREE-THREE-ONE](#head-three-three-one)
-        3. [HEAD THREE-THREE-TWO](#head-three-three-two)
-            4. [HEAD THREE-THREE-TWO-ONE](#head-three-three-two-one)
-1. [HEAD FOUR](#head-four)
+<div align="center">
+<h1>toc</h1>
 
-<!--toc-->
+[toc](https://github.com/ycd/toc) TOC, table of content generator for Markdown files
 
 
+![toc gif](assets/toc.gif)
+
+</div>
+
+
+# Table of Contents
+
+- [Usage](#usage)
+- [Installation](#installation)
+    - [Packages](#packages)
+    - [Downloads](#downloads)
+    - [Compilation](#compilation)
+- [Documentation](#documentation)
+- [Licence](#licence)
+
+---
+
+## Usage
+
+
+
+```
+Usage: toc [options]
+Options:
+        -p, --path <path>        Path for the markdown file.
+        -a, --append             Append toc after <!--toc--> or write to stdout. 
+        -b, --bulleted           Write as bulleted or write as numbered list.
+
+
+        -h, --help               Show this message and exit.
+```
+
+No configuration needed.
+
+```bash
+$ toc -p path/to/markdown.md
+```
+
+Create numbered list instead of bulleted list.
+
+```bash
+$ toc -p path/to/markdown.md --bulleted=false
+```
+
+Write result to standart output instead of appending.
+
+```bash
+$ toc -p path/to/markdown.md --append=false
+```
+
+---
+
+
+## Installation
+
+
+### Packages
+
+* [ ] For Arch Linux, install the [``]() package.
+* [ ] For Homebrew on macOS, install the [``]() formula.
+
+
+### Downloads
+
+Binary downloads of example are available from [the releases section on GitHub](https://github.com/ycd/toc/releases/) for 64-bit Windows, macOS, and Linux targets. They contain the compiled executable.
+
+
+### Installation from source
+
+0. Verify that you have Go 1.13+ installed
+
+   ```sh
+   $ go version
+   ```
+
+   If `go` is not installed, follow instructions on [the Go website](https://golang.org/doc/install).
+
+1. Clone this repository
+
+   ```sh
+   $ git clone https://github.com/ycd/toc 
+   $ cd ycd
+   ```
+
+2. Build and install
+
+   #### Unix/Linux
+   ```sh
+   # May require you to use sudo
+   $ go build .
+   $ cp toc /usr/local/toc
+   ```
+3. Verify installation
+
+   ```sh
+   $ toc -h 
+   Usage: toc [options]
+   Options:
+           -p, --path <path>        Path for the markdown file.
+           -a, --append             Append toc after <!--toc-->, or write to stdout. 
+           -b, --bulleted           Write as bulleted, or write as numbered list.
+
+
+           -h, --help               Show this message and exit.
+   ```
+---
+
+
+## Contributing
+
+All kinds of Pull Requests and Feature Requests are welcomed!
+
+## Licence
+
+toc's source code is licenced under the [MIT License](https://www.mit.edu/~amini/LICENSE.md).
