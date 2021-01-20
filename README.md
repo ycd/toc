@@ -49,7 +49,7 @@ Create numbered list instead of bulleted list.
 $ toc -p path/to/markdown.md --bulleted=false
 ```
 
-Write result to standart output instead of appending.
+Write result to standard output instead of appending.
 
 ```sh
 $ toc -p path/to/markdown.md --append=false
