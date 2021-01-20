@@ -25,7 +25,7 @@
 
 
 
-```
+```sh
 Usage: toc [options]
 Options:
         -p, --path <path>        Path for the markdown file.
@@ -39,19 +39,19 @@ Options:
 Add `<!--toc-->`  to your markdown to the place where you want to add Table of Contents. That's it.
 
 
-```bash
+```sh
 $ toc -p path/to/markdown.md
 ```
 
 Create numbered list instead of bulleted list.
 
-```bash
+```sh
 $ toc -p path/to/markdown.md --bulleted=false
 ```
 
 Write result to standart output instead of appending.
 
-```bash
+```sh
 $ toc -p path/to/markdown.md --append=false
 ```
 
@@ -73,11 +73,12 @@ Binary downloads of example are available from [the releases section on GitHub](
 
 | platform     |
 | ----------- | 
-| [macOS 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_darwin_x86_64.tar.gz)   
-| [Linux 32-Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_linux_i386.tar.gz) 
-| [Linux 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_linux_x86_64.tar.gz)    
-| [Windows 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_windows_x86_64.zip)       
-| [Windows 32 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_windows_i386.zip)       
+| [macOS 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_darwin_x86_64.tar.gz)   
+| [Linux 32-Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_linux_i386.tar.gz) 
+| [Linux ARM 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_linux_arm64.tar.gz)    
+| [Linux 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_linux_x86_64.tar.gz)    
+| [Windows 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_windows_x86_64.zip)       
+| [Windows 32 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_windows_i386.zip)       
 
 
 
