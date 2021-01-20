@@ -89,16 +89,19 @@ func getHeaderValue(header string) int {
 	return headers[header]
 }
 
-func (t *toc) parseHTML(body []byte) error {
-	var f func(*html.Node)
-	var delimiter string
-
+func (t *toc) getDelimiter(header int) string {
 	// Set delimiter
 	if t.Options.Bulleted == true {
-		delimiter = "-"
-	} else {
-		delimiter = "1."
+		if header >= 1 {
+			return "*"
+		}
+		return "-"
 	}
+	return "1."
+}
+
+func (t *toc) parseHTML(body []byte) error {
+	var f func(*html.Node)
 
 	parsedMD, err := convertToHTML(body)
 	if err != nil {
@@ -109,7 +112,9 @@ func (t *toc) parseHTML(body []byte) error {
 
 	f = func(n *html.Node) {
 		if n.Type == html.ElementNode && isHeader(n.Data) {
-			t.add(fmt.Sprintf("%s%s [%s](#%s)\n", strings.Repeat(tab, getHeaderValue(n.Data)), delimiter, n.FirstChild.Data, n.Attr[0].Val))
+			headerVal := getHeaderValue(n.Data)
+			val := fmt.Sprintf("%s%s [%s](#%s)\n", strings.Repeat(tab, headerVal), t.getDelimiter(headerVal), n.FirstChild.Data, n.Attr[0].Val)
+			t.add(val)
 		}
 
 		for c := n.FirstChild; c != nil; c = c.NextSibling {
