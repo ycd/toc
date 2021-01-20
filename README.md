@@ -36,7 +36,8 @@ Options:
         -h, --help               Show this message and exit.
 ```
 
-No configuration needed.
+Add `<!--toc-->`  to your markdown to the place where you want to add Table of Contents. That's it.
+
 
 ```bash
 $ toc -p path/to/markdown.md
@@ -69,6 +70,15 @@ $ toc -p path/to/markdown.md --append=false
 ### Downloads
 
 Binary downloads of example are available from [the releases section on GitHub](https://github.com/ycd/toc/releases/) for 64-bit Windows, macOS, and Linux targets. They contain the compiled executable.
+
+| platform     |
+| ----------- | 
+| [macOS 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_darwin_x86_64.tar.gz)   
+| [Linux 32-Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_linux_i386.tar.gz) 
+| [Linux 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_linux_x86_64.tar.gz)    
+| [Windows 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_windows_x86_64.zip)       
+| [Windows 32 Bit](https://github.com/ycd/toc/releases/download/v0.1.11/toc_0.1.11_windows_i386.zip)       
+
 
 
 ### Installation from source
@@ -118,4 +128,4 @@ All kinds of Pull Requests and Feature Requests are welcomed!
 
 ## Licence
 
-toc's source code is licenced under the [MIT License](https://www.mit.edu/~amini/LICENSE.md).
+toc's source code is licenced under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.txt).
