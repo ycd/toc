@@ -1,8 +1,9 @@
 on: release
+
 name: Build Release
 jobs:
   release-linux-386:
-    name: release linux/386
+    name: linux/386
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -14,7 +15,7 @@ jobs:
         GOOS: linux
         EXTRA_FILES: "LICENSE"
   release-linux-amd64:
-    name: release linux/amd64
+    name: linux/amd64
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -26,7 +27,7 @@ jobs:
         GOOS: linux
         EXTRA_FILES: "LICENSE"
   release-linux-arm:
-    name: release linux/386
+    name: linux/386
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -38,7 +39,7 @@ jobs:
         GOOS: linux
         EXTRA_FILES: "LICENSE"
   release-linux-arm64:
-    name: release linux/amd64
+    name: linux/arm64
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -50,7 +51,7 @@ jobs:
         GOOS: linux
         EXTRA_FILES: "LICENSE"
   release-darwin-amd64:
-    name: release darwin/amd64
+    name: darwin/amd64
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -62,7 +63,7 @@ jobs:
         GOOS: darwin
         EXTRA_FILES: "LICENSE"
   release-windows-386:
-    name: release windows/386
+    name: windows/386
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -74,7 +75,7 @@ jobs:
         GOOS: windows
         EXTRA_FILES: "LICENSE"
   release-windows-amd64:
-    name: release windows/amd64
+    name: windows/amd64
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
