@@ -38,6 +38,7 @@ type Options struct {
 	Path     string `json:"path"`
 	Append   bool   `json:"append"`
 	Bulleted bool   `json:"bulleted"`
+	Skip     int    `json:"skip"`
 	ShowHelp bool   `json:"show_help"`
 }
 
@@ -52,6 +53,8 @@ func ConfigureOptions(fs *flag.FlagSet, args []string) (*Options, error) {
 	fs.BoolVar(&opts.Append, "append", true, "Append to markdown after <!--toc--> or write to stdout")
 	fs.BoolVar(&opts.Bulleted, "b", true, "Write as bulleted, or write as numbered list")
 	fs.BoolVar(&opts.Bulleted, "bulleted", true, "Write as bulleted, or write as numbered list")
+	fs.IntVar(&opts.Skip, "s", 0, "Skip the first given number of headers ")
+	fs.IntVar(&opts.Skip, "skip", 0, "Skip the first given number of headers ")
 	fs.BoolVar(&opts.ShowHelp, "h", false, "Show help message")
 	fs.BoolVar(&opts.ShowHelp, "help", false, "Show help message")
 
