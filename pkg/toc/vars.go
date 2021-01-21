@@ -11,6 +11,7 @@ type tocConfig struct {
 	Path     string
 	Bulleted bool
 	Append   bool
+	Skip     int
 }
 
 type toc struct {
