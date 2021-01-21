@@ -38,6 +38,7 @@ func Run() {
 	toc.Options.Path = opts.Path
 	toc.Options.Bulleted = opts.Bulleted
 	toc.Options.Append = opts.Append
+	toc.Options.Skip = opts.Skip
 
 	toc.logic()
 }
