@@ -69,7 +69,11 @@ func (t *toc) logic() {
 }
 
 func (t *toc) String() (s string) {
-	for _, v := range t.Content {
+	if t.Options.Skip >= len(t.Content) {
+		color.Red("ERROR: skip value is bigger than the length of table of contents")
+		os.Exit(1)
+	}
+	for _, v := range t.Content[t.Options.Skip:] {
 		s += v
 	}
 
