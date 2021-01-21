@@ -39,6 +39,7 @@ func Run() {
 	toc.Options.Bulleted = opts.Bulleted
 	toc.Options.Append = opts.Append
 	toc.Options.Skip = opts.Skip
+	toc.Options.Depth = opts.Depth
 
 	toc.logic()
 }
@@ -117,8 +118,10 @@ func (t *toc) parseHTML(body []byte) error {
 	f = func(n *html.Node) {
 		if n.Type == html.ElementNode && isHeader(n.Data) {
 			headerVal := getHeaderValue(n.Data)
-			val := fmt.Sprintf("%s%s [%s](#%s)\n", strings.Repeat(tab, headerVal), t.getDelimiter(headerVal), n.FirstChild.Data, n.Attr[0].Val)
-			t.add(val)
+
+			if headerVal < t.Options.Depth {
+				t.add(fmt.Sprintf("%s%s [%s](#%s)\n", strings.Repeat(tab, headerVal), t.getDelimiter(headerVal), n.FirstChild.Data, n.Attr[0].Val))
+			}
 		}
 
 		for c := n.FirstChild; c != nil; c = c.NextSibling {
