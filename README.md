@@ -91,7 +91,7 @@ Binary downloads of example are available from [the releases section on GitHub](
 
 0. Verify that you have Go 1.13+ installed
 
-   ```sh
+   ```
    $ go version
    ```
 
@@ -99,7 +99,7 @@ Binary downloads of example are available from [the releases section on GitHub](
 
 1. Clone this repository
 
-   ```sh
+   ```
    $ git clone https://github.com/ycd/toc 
    $ cd ycd
    ```
@@ -107,14 +107,14 @@ Binary downloads of example are available from [the releases section on GitHub](
 2. Build and install
 
    #### Unix/Linux
-   ```sh
+   ```
    # May require you to use sudo
    $ go build .
    $ cp toc /usr/local/toc
    ```
 3. Verify installation
 
-   ```sh
+   ```
    $ toc -h 
 
    Usage: toc [options]
