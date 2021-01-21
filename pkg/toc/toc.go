@@ -56,16 +56,15 @@ func (t *toc) logic() {
 	}
 
 	if t.Options.Append == true {
-		err = t.writeToFile(string(resp))
-		if err != nil {
+		if err = t.writeToFile(string(resp)); err != nil {
 			color.Red(err.Error())
 			os.Exit(1)
 		}
+		color.Green("✔ Table of contents generated successfully")
 	} else {
 		fmt.Print(t.String())
 	}
 
-	color.HiGreen("✔ Table of contents generated successfully.")
 }
 
 func (t *toc) String() (s string) {
