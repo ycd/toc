@@ -15,8 +15,7 @@ Options:
 	-p, --path <path>        Path for the markdown file.
 	-a, --append             Append toc after <!--toc-->, or write to stdout. 
 	-b, --bulleted           Write as bulleted, or write as numbered list.
-
-	
+	-s, --skip               Skip the first given number of headers.
 	-h, --help               Show this message and exit.
 `
 
