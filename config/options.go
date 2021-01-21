@@ -16,6 +16,7 @@ Options:
 	-a, --append             Append toc after <!--toc-->, or write to stdout. 
 	-b, --bulleted           Write as bulleted, or write as numbered list.
 	-s, --skip               Skip the first given number of headers.
+	-d, --depth              Set the number of maximum heading level to be included.
 	-h, --help               Show this message and exit.
 `
 
@@ -38,6 +39,7 @@ type Options struct {
 	Append   bool   `json:"append"`
 	Bulleted bool   `json:"bulleted"`
 	Skip     int    `json:"skip"`
+	Depth    int    `json:"depth"`
 	ShowHelp bool   `json:"show_help"`
 }
 
@@ -54,6 +56,8 @@ func ConfigureOptions(fs *flag.FlagSet, args []string) (*Options, error) {
 	fs.BoolVar(&opts.Bulleted, "bulleted", true, "Write as bulleted, or write as numbered list")
 	fs.IntVar(&opts.Skip, "s", 0, "Skip the first given number of headers ")
 	fs.IntVar(&opts.Skip, "skip", 0, "Skip the first given number of headers ")
+	fs.IntVar(&opts.Depth, "d", 0, "Set the number of maximum heading level to be included")
+	fs.IntVar(&opts.Depth, "depth", 0, "Set the number of maximum heading level to be included")
 	fs.BoolVar(&opts.ShowHelp, "h", false, "Show help message")
 	fs.BoolVar(&opts.ShowHelp, "help", false, "Show help message")
 

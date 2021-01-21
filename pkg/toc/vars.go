@@ -12,6 +12,7 @@ type tocConfig struct {
 	Bulleted bool
 	Append   bool
 	Skip     int
+	Depth    int
 }
 
 type toc struct {
