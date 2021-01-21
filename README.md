@@ -25,34 +25,39 @@
 
 
 
-```sh
+```
 Usage: toc [options]
 Options:
         -p, --path <path>        Path for the markdown file.
-        -a, --append             Append toc after <!--toc--> or write to stdout. 
-        -b, --bulleted           Write as bulleted or write as numbered list.
-
-
+        -a, --append             Append toc after <!--toc-->, or write to stdout. 
+        -b, --bulleted           Write as bulleted, or write as numbered list.
+        -s, --skip               Skip the first given number of headers.
         -h, --help               Show this message and exit.
 ```
 
 Add `<!--toc-->`  to your markdown to the place where you want to add Table of Contents. That's it.
 
 
-```sh
+```
 $ toc -p path/to/markdown.md
 ```
 
 Create numbered list instead of bulleted list.
 
-```sh
+```
 $ toc -p path/to/markdown.md --bulleted=false
 ```
 
 Write result to standard output instead of appending.
 
-```sh
+```
 $ toc -p path/to/markdown.md --append=false
+```
+
+Skip the first `n` number of headers via `-s`, `--skip` flags.
+
+```
+$ toc -p path/to/markdown.md --skip 2
 ```
 
 ---
@@ -111,14 +116,15 @@ Binary downloads of example are available from [the releases section on GitHub](
 
    ```sh
    $ toc -h 
+
    Usage: toc [options]
    Options:
-           -p, --path <path>        Path for the markdown file.
-           -a, --append             Append toc after <!--toc-->, or write to stdout. 
-           -b, --bulleted           Write as bulleted, or write as numbered list.
+         -p, --path <path>        Path for the markdown file.
+         -a, --append             Append toc after <!--toc-->, or write to stdout. 
+         -b, --bulleted           Write as bulleted, or write as numbered list.
+         -s, --skip               Skip the first given number of headers.
+         -h, --help               Show this message and exit.
 
-
-           -h, --help               Show this message and exit.
    ```
 ---
 
