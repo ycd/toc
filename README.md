@@ -28,15 +28,17 @@
 ```
 Usage: toc [options]
 Options:
-        -p, --path <path>        Path for the markdown file.
-        -a, --append             Append toc after <!--toc-->, or write to stdout. 
-        -b, --bulleted           Write as bulleted, or write as numbered list.
-        -s, --skip               Skip the first given number of headers.
-        -h, --help               Show this message and exit.
+	-p, --path <path>        Path for the markdown file.
+	-a, --append             Append toc after <!--toc-->, or write to stdout. 
+	-b, --bulleted           Write as bulleted, or write as numbered list.
+	-s, --skip               Skip the first given number of headers.
+	-d, --depth              Set the number of maximum heading level to be included.
+	-h, --help               Show this message and exit.
 ```
 
 Add `<!--toc-->`  to your markdown to the place where you want to add Table of Contents. That's it.
 
+Give the markdown file as an input with `-p`, `--path` flags.
 
 ```
 $ toc -p path/to/markdown.md
@@ -45,19 +47,27 @@ $ toc -p path/to/markdown.md
 Create numbered list instead of bulleted list.
 
 ```
-$ toc -p path/to/markdown.md --bulleted=false
+$ toc --bulleted=false
 ```
 
 Write result to standard output instead of appending.
 
 ```
-$ toc -p path/to/markdown.md --append=false
+$ toc --append=false
 ```
 
 Skip the first `n` number of headers via `-s`, `--skip` flags.
 
 ```
-$ toc -p path/to/markdown.md --skip 2
+$ toc --skip 2
+```
+
+Set the number of maximum heading level to be included with `-d`, `--depth` flags. 
+
+Set maximum heading level to 3 (h3)
+
+```
+$ toc --depth 3
 ```
 
 ---
@@ -112,6 +122,7 @@ Binary downloads of example are available from [the releases section on GitHub](
    $ go build .
    $ cp toc /usr/local/toc
    ```
+   
 3. Verify installation
 
    ```
@@ -119,12 +130,12 @@ Binary downloads of example are available from [the releases section on GitHub](
 
    Usage: toc [options]
    Options:
-         -p, --path <path>        Path for the markdown file.
-         -a, --append             Append toc after <!--toc-->, or write to stdout. 
-         -b, --bulleted           Write as bulleted, or write as numbered list.
-         -s, --skip               Skip the first given number of headers.
-         -h, --help               Show this message and exit.
-
+      -p, --path <path>        Path for the markdown file.
+      -a, --append             Append toc after <!--toc-->, or write to stdout. 
+      -b, --bulleted           Write as bulleted, or write as numbered list.
+      -s, --skip               Skip the first given number of headers.
+      -d, --depth              Set the number of maximum heading level to be included.
+      -h, --help               Show this message and exit.
    ```
 ---
 
