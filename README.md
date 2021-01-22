@@ -28,11 +28,11 @@
 ```
 Usage: toc [options]
 Options:
-	-p, --path <path>        Path for the markdown file.
-	-a, --append             Append toc after <!--toc-->, or write to stdout. 
-	-b, --bulleted           Write as bulleted, or write as numbered list.
-	-s, --skip               Skip the first given number of headers.
-	-d, --depth              Set the number of maximum heading level to be included.
+	-p, --path      <path>   Path for the markdown file.                               [REQUIRED]
+	-a, --append    <bool>   Append toc after <!--toc-->, or write to stdout.          [Default: true]
+	-b, --bulleted  <bool>   Write as bulleted, or write as numbered list.             [Default: true] 
+	-s, --skip      <int>    Skip the first given number of headers.                   [Default: 0]
+	-d, --depth     <int>    Set the number of maximum heading level to be included.   [Default: 6]
 	-h, --help               Show this message and exit.
 ```
 
@@ -88,12 +88,12 @@ Binary downloads of example are available from [the releases section on GitHub](
 
 | platform     |
 | ----------- | 
-| [macOS 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_darwin_x86_64.tar.gz)   
-| [Linux 32-Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_linux_i386.tar.gz) 
-| [Linux ARM 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_linux_arm64.tar.gz)    
-| [Linux 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_linux_x86_64.tar.gz)    
-| [Windows 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_windows_x86_64.zip)       
-| [Windows 32 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_windows_i386.zip)       
+| [macOS 64 Bit](https://github.com/ycd/toc/releases/download/v0.2.0/toc_0.2.0_darwin_x86_64.tar.gz)   
+| [Linux 32-Bit](https://github.com/ycd/toc/releases/download/v0.2.0/toc_0.2.0_linux_i386.tar.gz) 
+| [Linux ARM 64 Bit](https://github.com/ycd/toc/releases/download/v0.2.0/toc_0.2.0_linux_arm64.tar.gz)    
+| [Linux 64 Bit](https://github.com/ycd/toc/releases/download/v0.2.0/toc_0.2.0_linux_x86_64.tar.gz)    
+| [Windows 64 Bit](https://github.com/ycd/toc/releases/download/v0.2.0/toc_0.2.0_windows_x86_64.zip)       
+| [Windows 32 Bit](https://github.com/ycd/toc/releases/download/v0.2.0/toc_0.2.0_windows_i386.zip)       
 
 
 
@@ -130,11 +130,11 @@ Binary downloads of example are available from [the releases section on GitHub](
 
    Usage: toc [options]
    Options:
-      -p, --path <path>        Path for the markdown file.
-      -a, --append             Append toc after <!--toc-->, or write to stdout. 
-      -b, --bulleted           Write as bulleted, or write as numbered list.
-      -s, --skip               Skip the first given number of headers.
-      -d, --depth              Set the number of maximum heading level to be included.
+      -p, --path      <path>   Path for the markdown file.                               [REQUIRED]
+      -a, --append    <bool>   Append toc after <!--toc-->, or write to stdout.          [Default: true]
+      -b, --bulleted  <bool>   Write as bulleted, or write as numbered list.             [Default: true] 
+      -s, --skip      <int>    Skip the first given number of headers.                   [Default: 0]
+      -d, --depth     <int>    Set the number of maximum heading level to be included.   [Default: 6]
       -h, --help               Show this message and exit.
    ```
 ---
