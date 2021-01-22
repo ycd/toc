@@ -45,27 +45,30 @@ func Run() {
 }
 
 func (t *toc) logic() {
+	red := color.New(color.FgRed, color.Bold).PrintlnFunc()
+
 	resp, err := t.readFile()
 	if err != nil {
-		color.Red(err.Error())
+		red("ERROR: " + err.Error())
 		os.Exit(1)
 	}
 
 	err = t.parseHTML(resp)
 	if err != nil {
-		color.Red(err.Error())
+		red("ERROR: " + err.Error())
 		os.Exit(1)
 	}
 
-	if t.Options.Append == true {
-		if err = t.writeToFile(string(resp)); err != nil {
-			color.Red(err.Error())
-			os.Exit(1)
-		}
-		color.Green("✔ Table of contents generated successfully")
-	} else {
+	if t.Options.Append != true {
 		fmt.Print(t.String())
+		return
 	}
+
+	if err = t.writeToFile(string(resp)); err != nil {
+		red("ERROR: " + err.Error())
+		os.Exit(1)
+	}
+	color.Green("✔ Table of contents generated successfully")
 
 }
 
@@ -140,7 +143,7 @@ func (t *toc) add(content string) {
 
 func (t *toc) readFile() ([]byte, error) {
 	if _, err := os.Stat(t.Options.Path); os.IsNotExist(err) {
-		return nil, fmt.Errorf(fmt.Sprintf("path (%s) doesn't exists", t.Options.Path))
+		return nil, fmt.Errorf(fmt.Sprintf("path '%s' doesn't exists", t.Options.Path))
 	}
 
 	file, err := ioutil.ReadFile(t.Options.Path)
