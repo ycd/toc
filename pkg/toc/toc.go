@@ -170,19 +170,45 @@ func convertToHTML(file []byte) (string, error) {
 	return buf.String(), nil
 }
 
-// TODO(ycd): make file writing more
-// memory efficient and safe
-func (t *toc) writeToFile(markdown string) error {
+// reformatMarkdown loads the entire string in the memory,
+// finds the  end and starting position for pos
+// deletes the older one and creates a new.
+//
+// if you are concerned about the performance, usually markdown files
+// are smaller than 3MB. So it would be pretty fast.
+func (t *toc) reformatMarkdown(markdown string) (string, error) {
 	search := "<!--toc-->"
+	finish := "<!-- end of toc -->"
 
-	idx := strings.Index(markdown, search) + len(search) + 1
-	if idx == 10 {
-		return errors.New("toc path is missing, add '<!--toc--->' to your markdown")
+	// Get indexes of ending position of <!--toc-->
+	// get the ending position of finish if exists.
+	finishPos := strings.Index(markdown, finish)
+	idx := strings.Index(markdown, search)
+
+	if idx == -1 {
+		return "", errors.New("ERROR: toc path is missing, add '<!--toc--->' to your markdown")
 	}
 
-	newText := markdown[:idx] + "\n" + t.String() + markdown[idx:]
+	// Set index to end of <!--toc-->
+	idx = idx + len(search)
 
-	err := ioutil.WriteFile(t.Options.Path, []byte(newText), 0644)
+	if finishPos != -1 {
+		markdown = (markdown[:idx]) + markdown[finishPos+len(finish):]
+	}
+
+	markdown = markdown[:idx] + "\n" + t.String() + "\n" + finish + markdown[idx:]
+
+	return markdown, nil
+}
+
+func (t *toc) writeToFile(markdown string) error {
+
+	markdown, err := t.reformatMarkdown(markdown)
+	if err != nil {
+		return err
+	}
+
+	err = ioutil.WriteFile(t.Options.Path, []byte(markdown), 0644)
 	if err != nil {
 		return err
 	}
