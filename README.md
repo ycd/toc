@@ -88,12 +88,12 @@ Binary downloads of example are available from [the releases section on GitHub](
 
 | platform     |
 | ----------- | 
-| [macOS 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_darwin_x86_64.tar.gz)   
-| [Linux 32-Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_linux_i386.tar.gz) 
-| [Linux ARM 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_linux_arm64.tar.gz)    
-| [Linux 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_linux_x86_64.tar.gz)    
-| [Windows 64 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_windows_x86_64.zip)       
-| [Windows 32 Bit](https://github.com/ycd/toc/releases/download/v0.1.12/toc_0.1.12_windows_i386.zip)       
+| [macOS 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_darwin_x86_64.tar.gz)   
+| [Linux 32-Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_linux_i386.tar.gz) 
+| [Linux ARM 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_linux_arm64.tar.gz)    
+| [Linux 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_linux_x86_64.tar.gz)    
+| [Windows 64 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_windows_x86_64.zip)       
+| [Windows 32 Bit](https://github.com/ycd/toc/releases/download/v2.0.0/toc_2.0.0_windows_i386.zip)       
 
 
 
