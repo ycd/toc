@@ -12,11 +12,11 @@ import (
 var usageStr = `
 Usage: toc [options]
 Options:
-	-p, --path <path>        Path for the markdown file.
-	-a, --append             Append toc after <!--toc-->, or write to stdout. 
-	-b, --bulleted           Write as bulleted, or write as numbered list.
-	-s, --skip               Skip the first given number of headers.
-	-d, --depth              Set the number of maximum heading level to be included.
+	-p, --path      <path>   Path for the markdown file.                               [REQUIRED]
+	-a, --append    <bool>   Append toc after <!--toc-->, or write to stdout.          [Default: true]
+	-b, --bulleted  <bool>   Write as bulleted, or write as numbered list.             [Default: true] 
+	-s, --skip      <int>    Skip the first given number of headers.                   [Default: 0]
+	-d, --depth     <int>    Set the number of maximum heading level to be included.   [Default: 6]
 	-h, --help               Show this message and exit.
 `
 
