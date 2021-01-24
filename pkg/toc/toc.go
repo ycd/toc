@@ -197,7 +197,7 @@ func (t *toc) reformatMarkdown(markdown string) (string, error) {
 
 	idx := startIdx[1] // end of <!--toc--> string
 
-	finish := "<!-- end of toc -->" // default finish string
+	finish := "<!-- tocstop -->" // default finish string
 	if finishIdx != nil {
 		finish = markdown[finishIdx[0]:finishIdx[1]]
 		markdown = (markdown[:idx]) + markdown[finishIdx[1]:]
