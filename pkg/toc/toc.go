@@ -105,13 +105,15 @@ func getHeaderValue(header string) int {
 
 func (t *toc) getDelimiter(header int) string {
 	// Set delimiter
-	if t.Options.Bulleted == true {
-		if header >= 1 {
-			return "*"
-		}
-		return "-"
+	if t.Options.Bulleted != true {
+		return "1."
 	}
-	return "1."
+
+	if header >= 1 {
+		return "*"
+	}
+
+	return "-"
 }
 
 func (t *toc) parseHTML(body []byte) error {
