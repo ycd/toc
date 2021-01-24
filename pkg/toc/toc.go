@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"toc/config"
 
@@ -17,6 +18,11 @@ import (
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"golang.org/x/net/html"
+)
+
+var (
+	startRe  = regexp.MustCompile(`(?i)\<!--\s*toc\s*--\>`)
+	finishRe = regexp.MustCompile(`(?i)\<!--\s*(end of toc|tocstop|/TOC)\s*--\>`)
 )
 
 // Run handles the application logic.
@@ -174,29 +180,27 @@ func convertToHTML(file []byte) (string, error) {
 }
 
 // reformatMarkdown loads the entire string in the memory,
-// finds the  end and starting position for pos
+// finds the end and starting position for pos
 // deletes the older one and creates a new.
 //
 // if you are concerned about the performance, usually markdown files
 // are smaller than 3MB. So it would be pretty fast.
 func (t *toc) reformatMarkdown(markdown string) (string, error) {
-	search := "<!--toc-->"
-	finish := "<!-- end of toc -->"
-
 	// Get indexes of ending position of <!--toc-->
 	// get the ending position of finish if exists.
-	finishPos := strings.Index(markdown, finish)
-	idx := strings.Index(markdown, search)
+	startIdx := startRe.FindStringIndex(markdown)
+	finishIdx := finishRe.FindStringIndex(markdown)
 
-	if idx == -1 {
-		return "", errors.New("ERROR: toc path is missing, add '<!--toc--->' to your markdown")
+	if startIdx == nil {
+		return "", errors.New("ERROR: toc path is missing, add '<!--toc-->' to your markdown")
 	}
 
-	// Set index to end of <!--toc-->
-	idx = idx + len(search)
+	idx := startIdx[1] // end of <!--toc--> string
 
-	if finishPos != -1 {
-		markdown = (markdown[:idx]) + markdown[finishPos+len(finish):]
+	finish := "<!-- end of toc -->" // default finish string
+	if finishIdx != nil {
+		finish = markdown[finishIdx[0]:finishIdx[1]]
+		markdown = (markdown[:idx]) + markdown[finishIdx[1]:]
 	}
 
 	markdown = markdown[:idx] + "\n" + t.String() + "\n" + finish + markdown[idx:]
