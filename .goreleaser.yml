@@ -31,3 +31,11 @@ archives:
 
 checksum:
   name_template: "checksums.txt"
+
+dockers:
+  - dockerfile: Dockerfile
+    binaries:
+      - toc
+    image_templates:
+      - "yagizcan/toc:latest"
+      - "yagizcan/toc:{{ .Tag }}"
