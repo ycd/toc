@@ -11,13 +11,21 @@
 
 # Table of Contents
 
-- [Usage](#usage)
-- [Installation](#installation)
-    - [Packages](#packages)
-    - [Downloads](#downloads)
-    - [Compilation](#compilation)
-- [Documentation](#documentation)
-- [Licence](#licence)
+<!--toc-->
+- [Table of Contents](#table-of-contents)
+    * [Usage](#usage)
+    * [Installation](#installation)
+        * [Packages](#packages)
+            * [Arch Linux](#arch-linux)
+            * [Homebrew](#homebrew)
+            * [Docker](#docker)
+        * [Downloads](#downloads)
+        * [Installation from source](#installation-from-source)
+            * [Unix/Linux](#unixlinux)
+    * [Contributing](#contributing)
+    * [Licence](#licence)
+
+<!-- tocstop -->
 
 ---
 
@@ -78,8 +86,23 @@ $ toc --depth 3
 
 ### Packages
 
+#### Arch Linux
+
 * [ ] For Arch Linux, install the [``]() package.
+
+#### Homebrew
+
 * [ ] For Homebrew on macOS, install the [``]() formula.
+
+#### Docker 
+
+It is available via two tags.
+
+You can either use `latest` or `$VERSION`.
+
+```sh
+docker run --rm -it yagizcan/toc:latest toc
+```
 
 
 ### Downloads
