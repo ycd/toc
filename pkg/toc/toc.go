@@ -75,7 +75,6 @@ func (t *toc) logic() {
 		os.Exit(1)
 	}
 	color.Green("✔ Table of contents generated successfully")
-
 }
 
 func (t *toc) String() (s string) {
@@ -151,7 +150,7 @@ func (t *toc) add(content string) {
 
 func (t *toc) readFile() ([]byte, error) {
 	if _, err := os.Stat(t.Options.Path); os.IsNotExist(err) {
-		return nil, fmt.Errorf(fmt.Sprintf("path '%s' doesn't exists", t.Options.Path))
+		return nil, fmt.Errorf("path '%s' doesn't exists", t.Options.Path)
 	}
 
 	file, err := ioutil.ReadFile(t.Options.Path)
@@ -211,7 +210,6 @@ func (t *toc) reformatMarkdown(markdown string) (string, error) {
 }
 
 func (t *toc) writeToFile(markdown string) error {
-
 	markdown, err := t.reformatMarkdown(markdown)
 	if err != nil {
 		return err
