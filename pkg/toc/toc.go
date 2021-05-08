@@ -25,6 +25,8 @@ var (
 	finishRe = regexp.MustCompile(`(?i)\<!--\s*(end of toc|tocstop|/TOC)\s*--\>`)
 )
 
+var skip = 0
+
 // Run handles the application logic.
 func Run() {
 	var toc toc
@@ -65,7 +67,7 @@ func (t *toc) logic() {
 		os.Exit(1)
 	}
 
-	if t.Options.Append != true {
+	if !t.Options.Append {
 		fmt.Print(t.String())
 		return
 	}
@@ -82,7 +84,7 @@ func (t *toc) String() (s string) {
 		color.Red("ERROR: skip value is bigger than the length of table of contents")
 		os.Exit(1)
 	}
-	for _, v := range t.Content[t.Options.Skip:] {
+	for _, v := range t.Content {
 		s += v
 	}
 
@@ -102,9 +104,33 @@ func getHeaderValue(header string) int {
 	return headers[header]
 }
 
+func (t *toc) Last() int {
+	if len(t.Content) >= 1 {
+		switch spaceCount(t.Content[len(t.Content)-1]) {
+		case 0:
+			return 0
+		case 4:
+			return 1
+		case 8:
+			return 2
+		case 12:
+			return 3
+		case 16:
+			return 4
+		case 20:
+			return 5
+		}
+	}
+	return 0
+}
+
+func spaceCount(s string) int {
+	return len(s) - len(strings.TrimLeft(s, " "))
+}
+
 func (t *toc) getDelimiter(header int) string {
 	// Set delimiter
-	if t.Options.Bulleted != true {
+	if !t.Options.Bulleted {
 		return "1."
 	}
 
@@ -130,6 +156,20 @@ func (t *toc) parseHTML(body []byte) error {
 			headerVal := getHeaderValue(n.Data)
 
 			if headerVal < t.Options.Depth {
+				if len(t.Content) == 0 && headerVal != 0 {
+					headerVal -= 1
+				}
+
+				if (headerVal - t.Last()) > 1 {
+					headerVal -= 1
+				}
+
+				if t.Options.Skip > skip {
+					skip += 1
+					return
+				}
+
+				fmt.Println(t.Content)
 				t.add(fmt.Sprintf("%s%s [%s](#%s)\n", strings.Repeat(tab, headerVal), t.getDelimiter(headerVal), n.FirstChild.Data, n.Attr[0].Val))
 			}
 		}
