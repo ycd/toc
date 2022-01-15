@@ -1,4 +1,4 @@
-module toc
+module github.com/ycd/toc
 
 go 1.15
 
