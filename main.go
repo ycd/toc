@@ -1,7 +1,7 @@
 package main
 
 import (
-	"toc/pkg/toc"
+	"github.com/ycd/toc/pkg/toc"
 )
 
 func main() {
