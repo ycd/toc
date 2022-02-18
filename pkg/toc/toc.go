@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-	"toc/config"
+	"github.com/ycd/toc/config"
 
 	"github.com/fatih/color"
 	"github.com/yuin/goldmark"
