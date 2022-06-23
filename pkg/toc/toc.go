@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+
 	"github.com/ycd/toc/config"
 
 	"github.com/fatih/color"
@@ -80,7 +81,7 @@ func (t *toc) logic() {
 }
 
 func (t *toc) String() (s string) {
-	if t.Options.Skip >= len(t.Content) {
+	if len(t.Content) == 0 {
 		color.Red("ERROR: skip value is bigger than the length of table of contents")
 		os.Exit(1)
 	}
@@ -155,22 +156,8 @@ func (t *toc) parseHTML(body []byte) error {
 		if n.Type == html.ElementNode && isHeader(n.Data) {
 			headerVal := getHeaderValue(n.Data)
 
-			if headerVal < t.Options.Depth {
-				if len(t.Content) == 0 && headerVal != 0 {
-					headerVal -= 1
-				}
-
-				if (headerVal - t.Last()) > 1 {
-					headerVal -= 1
-				}
-
-				if t.Options.Skip > skip {
-					skip += 1
-					return
-				}
-
-				fmt.Println(t.Content)
-				t.add(fmt.Sprintf("%s%s [%s](#%s)\n", strings.Repeat(tab, headerVal), t.getDelimiter(headerVal), n.FirstChild.Data, n.Attr[0].Val))
+			if headerVal >= t.Options.Skip && headerVal < t.Options.Depth {
+				t.add(fmt.Sprintf("%s%s [%s](#%s)\n", strings.Repeat(tab, headerVal-t.Options.Skip), t.getDelimiter(headerVal-t.Options.Skip), n.FirstChild.Data, n.Attr[0].Val))
 			}
 		}
 
