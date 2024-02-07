@@ -134,16 +134,16 @@ Binary downloads of example are available from [the releases section on GitHub](
 
    ```
    $ git clone https://github.com/ycd/toc 
-   $ cd ycd
+   $ cd toc
    ```
 
 2. Build and install
 
    #### Unix/Linux
    ```
-   # May require you to use sudo
    $ go build .
-   $ cp toc /usr/local/toc
+   # May require you to use sudo
+   $ cp toc /usr/local/bin
    ```
    
 3. Verify installation
